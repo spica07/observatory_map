@@ -1,0 +1,4 @@
+.env
+tools/kakao_cache.json
+tools/kasi.html
+__pycache__/
