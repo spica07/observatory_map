@@ -1,0 +1,698 @@
+{
+  "광진청소년수련관 천체관측실": {
+    "lat": 37.54641,
+    "lng": 127.106302,
+    "kakaoName": "시립광진청소년센터",
+    "kakaoAddress": "서울 광진구 구천면로 2",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "노원천문우주과학관": {
+    "lat": 37.640842,
+    "lng": 127.065444,
+    "kakaoName": "노원천문우주과학관",
+    "kakaoAddress": "서울 노원구 동일로205길 13",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "창동청소년문화의집 천체관측실": {
+    "lat": 37.638136,
+    "lng": 127.042935,
+    "kakaoName": "창동청소년문화의집",
+    "kakaoAddress": "서울 도봉구 덕릉로62길 89",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "강서별빛우주과학관": {
+    "lat": 37.581007,
+    "lng": 126.814692,
+    "kakaoName": "강서별빛우주과학관",
+    "kakaoAddress": "서울 강서구 금낭화로 178",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "서울시립과학관": {
+    "lat": 37.641833,
+    "lng": 127.077506,
+    "kakaoName": "서울시립과학관",
+    "kakaoAddress": "서울 노원구 한글비석로 160",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "가평자연과별천문대": {
+    "lat": 37.912948,
+    "lng": 127.474042,
+    "kakaoName": "자연과별가평천문대",
+    "kakaoAddress": "경기 가평군 북면 백둔로342번길 115-33",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "가평코스모피아천문대": {
+    "lat": 37.914749,
+    "lng": 127.392111,
+    "kakaoName": "코스모피아천문대",
+    "kakaoAddress": "경기 가평군 조종면 명지산로 558-226",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "과천정보과학도서관 천체관측실": {
+    "lat": 37.418832,
+    "lng": 126.989607,
+    "kakaoName": "과천시정보과학도서관",
+    "kakaoAddress": "경기 과천시 중앙로 24",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "국립과천과학관": {
+    "lat": 37.439637,
+    "lng": 127.002295,
+    "kakaoName": "국립과천과학관",
+    "kakaoAddress": "경기 과천시 상하벌로 110",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "군포누리천문대": {
+    "lat": 37.330278,
+    "lng": 126.915356,
+    "kakaoName": "누리천문대",
+    "kakaoAddress": "경기 군포시 대야2로 139",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "안성천문대": {
+    "lat": 36.955773,
+    "lng": 127.233826,
+    "kakaoName": "안성천문대",
+    "kakaoAddress": "경기 안성시 미양면 천문대길 60",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "양주송암스페이스센터": {
+    "lat": 37.735801,
+    "lng": 126.942811,
+    "kakaoName": "송암스페이스센터",
+    "kakaoAddress": "경기 양주시 장흥면 권율로185번길 103",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "양평국제천문대": {
+    "lat": 37.558228,
+    "lng": 127.507905,
+    "kakaoName": "양평국제천문대",
+    "kakaoAddress": "경기 양평군 옥천면 용천로 474",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "양평중미산천문대": {
+    "lat": 37.581752,
+    "lng": 127.459372,
+    "kakaoName": "중미산천문대",
+    "kakaoAddress": "경기 양평군 옥천면 중미산로 1268",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "어린이천문대 구둔지점": {
+    "lat": 37.474476,
+    "lng": 127.63931,
+    "kakaoName": "",
+    "kakaoAddress": "경기 양평군 지평면",
+    "geoSource": "address",
+    "suspect": false
+  },
+  "어린이천문대 분당지점": {
+    "lat": 37.323297,
+    "lng": 127.155111,
+    "kakaoName": "분당어린이천문대",
+    "kakaoAddress": "경기 용인시 처인구 모현읍 오산로 132-1",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "어린이천문대 일산지점": {
+    "lat": 37.700152,
+    "lng": 126.791439,
+    "kakaoName": "일산어린이천문대",
+    "kakaoAddress": "경기 고양시 일산동구 중산로 306-176",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "여주세종천문대": {
+    "lat": 37.257354,
+    "lng": 127.753751,
+    "kakaoName": "세종천문대",
+    "kakaoAddress": "경기 여주시 강천면 부평로 3",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "의정부과학도서관 천문우주체험실": {
+    "lat": 37.744752,
+    "lng": 127.069166,
+    "kakaoName": "의정부과학도서관",
+    "kakaoAddress": "경기 의정부시 추동로124번길 52",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "평택무봉산청소년수련원 천체관측실": {
+    "lat": 37.107042,
+    "lng": 127.097171,
+    "kakaoName": "평택시무봉산청소년수련원",
+    "kakaoAddress": "경기 평택시 진위면 진위로 181-94",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "부천천문과학관": {
+    "lat": 37.510393,
+    "lng": 126.79029,
+    "kakaoName": "부천천문과학관",
+    "kakaoAddress": "경기 부천시 원미구 부천로264번길 117",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "경기도융합과학교육원": {
+    "lat": 37.3082,
+    "lng": 127.005554,
+    "kakaoName": "경기도교육청 미래과학교육원",
+    "kakaoAddress": "경기 수원시 장안구 수일로 135",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "강화천문과학관": {
+    "lat": 37.773539,
+    "lng": 126.390913,
+    "kakaoName": "강화천문과학관",
+    "kakaoAddress": "인천 강화군 하점면 강화서로 915-1",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "인천학생과학관": {
+    "lat": 37.490891,
+    "lng": 126.50804,
+    "kakaoName": "인천광역시교육청교육과학정보원 인천학생과학관",
+    "kakaoAddress": "인천 영종구 영종대로277번길 74-10",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "양구국토정중앙천문대": {
+    "lat": 38.068906,
+    "lng": 128.029671,
+    "kakaoName": "국토정중앙천문대",
+    "kakaoAddress": "강원특별자치도 양구군 국토정중앙면 국토정중앙로 127",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "영월별마로천문대": {
+    "lat": 37.198329,
+    "lng": 128.486782,
+    "kakaoName": "별마로천문대",
+    "kakaoAddress": "강원특별자치도 영월군 영월읍 영흥리 154-3",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "평창청소년수련원 천체관측실": {
+    "lat": 37.583068,
+    "lng": 128.398162,
+    "kakaoName": "국립평창청소년수련원",
+    "kakaoAddress": "강원특별자치도 평창군 용평면 새터마을길 108",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "화천조경철천문대": {
+    "lat": 38.118581,
+    "lng": 127.434006,
+    "kakaoName": "조경철천문대",
+    "kakaoAddress": "강원특별자치도 화천군 사내면 천문대길 431",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "횡성우리별천문대": {
+    "lat": 37.577511,
+    "lng": 127.896045,
+    "kakaoName": "우리별천문대",
+    "kakaoAddress": "강원특별자치도 횡성군 공근면 영서로상창5길 68",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "횡성천문인마을": {
+    "lat": 37.372441,
+    "lng": 128.175091,
+    "kakaoName": "천문인마을",
+    "kakaoAddress": "강원특별자치도 횡성군 강림면 월안1길 82",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "국립중앙과학관": {
+    "lat": 36.377131,
+    "lng": 127.37499,
+    "kakaoName": "국립중앙과학관",
+    "kakaoAddress": "대전 유성구 대덕대로 481",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "대전시민천문대": {
+    "lat": 36.381596,
+    "lng": 127.353671,
+    "kakaoName": "대전시민천문대",
+    "kakaoAddress": "대전 유성구 과학로 213-48",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "대전만인산푸른학습원 천체관측실": {
+    "lat": 36.202107,
+    "lng": 127.454609,
+    "kakaoName": "만인산푸른학습원",
+    "kakaoAddress": "대전 동구 산내로 106",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "보은서당골천문대": {
+    "lat": 36.489435,
+    "lng": 127.729499,
+    "kakaoName": "",
+    "kakaoAddress": "충북 보은군",
+    "geoSource": "address",
+    "suspect": false
+  },
+  "서산류방택천문기상과학관": {
+    "lat": 36.727345,
+    "lng": 126.413176,
+    "kakaoName": "서산류방택 천문기상과학관",
+    "kakaoAddress": "충남 서산시 인지면 무학로 1353-4",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "제천 별새꽃돌자연탐사과학관": {
+    "lat": 37.185754,
+    "lng": 128.058259,
+    "kakaoName": "별새꽃돌과학관",
+    "kakaoAddress": "충북 제천시 봉양읍 옥전4길 45",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "조치원을지천문대": {
+    "lat": 36.604592,
+    "lng": 127.298444,
+    "kakaoName": "",
+    "kakaoAddress": "세종특별자치시 조치원읍",
+    "geoSource": "address",
+    "suspect": false
+  },
+  "증평좌구산천문대": {
+    "lat": 36.703708,
+    "lng": 127.653191,
+    "kakaoName": "좌구산천문대",
+    "kakaoAddress": "충북 증평군 증평읍 솟점말길 187",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "진천선두천문대": {
+    "lat": 36.997219,
+    "lng": 127.415997,
+    "kakaoName": "선두천문대",
+    "kakaoAddress": "충북 진천군 광혜원면 실원길 238",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "천안청소년수련원 천체관측실": {
+    "lat": 36.808119,
+    "lng": 127.151981,
+    "kakaoName": "천안시청소년수련관",
+    "kakaoAddress": "충남 천안시 동남구 중앙로 111",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "청양칠갑산천문대 스타파크": {
+    "lat": 36.433745,
+    "lng": 126.88986,
+    "kakaoName": "칠갑산천문대 스타파크",
+    "kakaoAddress": "충남 청양군 정산면 한티고개길 178-46",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "청주별학교": {
+    "lat": 36.642487,
+    "lng": 127.48902,
+    "kakaoName": "",
+    "kakaoAddress": "충북 청주시",
+    "geoSource": "address",
+    "suspect": false
+  },
+  "충주고구려천문과학관": {
+    "lat": 37.040318,
+    "lng": 127.848436,
+    "kakaoName": "충주고구려천문과학관",
+    "kakaoAddress": "충북 충주시 중앙탑면 묘곡내동길 100",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "호빔천문대": {
+    "lat": 37.703425,
+    "lng": 127.325842,
+    "kakaoName": "",
+    "kakaoAddress": "경기 남양주시 수동면",
+    "geoSource": "address",
+    "suspect": false
+  },
+  "고흥우주천문과학관": {
+    "lat": 34.552537,
+    "lng": 127.12498,
+    "kakaoName": "고흥우주천문과학관",
+    "kakaoAddress": "전남광주통합특별시 고흥군 도양읍 장기산선암길 353",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "곡성섬진강천문대": {
+    "lat": 35.226631,
+    "lng": 127.369151,
+    "kakaoName": "곡성섬진강천문대",
+    "kakaoAddress": "전남광주통합특별시 구례군 구례읍 섬진강로 1234",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "남원 하늘별마을 만행산천문체험관": {
+    "lat": 35.529032,
+    "lng": 127.471402,
+    "kakaoName": "하늘별산촌생태마을 만행산천문체험관",
+    "kakaoAddress": "전북특별자치도 남원시 산동면 만행산길 109",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "담양성암천문대": {
+    "lat": 35.291288,
+    "lng": 126.975674,
+    "kakaoName": "",
+    "kakaoAddress": "전남광주통합특별시 담양군",
+    "geoSource": "address",
+    "suspect": false
+  },
+  "무주 반디별천문과학관": {
+    "lat": 36.012067,
+    "lng": 127.758902,
+    "kakaoName": "무주반디랜드 무주반디별천문과학관",
+    "kakaoAddress": "전북특별자치도 무주군 설천면 무설로 1324",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "무주부남천문대": {
+    "lat": 35.973825,
+    "lng": 127.559049,
+    "kakaoName": "부남천문대",
+    "kakaoAddress": "전북특별자치도 무주군 부남면 대소길 3",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "금구원야외조각미술관 천문대": {
+    "lat": 35.62065,
+    "lng": 126.488853,
+    "kakaoName": "금구원야외조각미술관 천문대",
+    "kakaoAddress": "전북특별자치도 부안군 변산면 조각공원길 31",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "빛고을천문대": {
+    "lat": 35.141807,
+    "lng": 126.86811,
+    "kakaoName": "광주청소년수련원 빛고을천문대",
+    "kakaoAddress": "전남광주통합특별시 서구 학생독립로 37",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "순천만천문대": {
+    "lat": 34.885812,
+    "lng": 127.509263,
+    "kakaoName": "순천만천문대",
+    "kakaoAddress": "전남광주통합특별시 순천시 순천만길 513-25",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "장흥정남진천문과학관": {
+    "lat": 34.658112,
+    "lng": 126.925861,
+    "kakaoName": "정남진천문과학관",
+    "kakaoAddress": "전남광주통합특별시 장흥군 장흥읍 평화우산길 180-608",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "나로우주센터 우주과학관": {
+    "lat": 34.453408,
+    "lng": 127.517741,
+    "kakaoName": "나로우주센터 우주과학관",
+    "kakaoAddress": "전남광주통합특별시 고흥군 봉래면 하반로 490",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "국립광주과학관": {
+    "lat": 35.229856,
+    "lng": 126.849926,
+    "kakaoName": "국립광주과학관",
+    "kakaoAddress": "전남광주통합특별시 북구 첨단과기로 235",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "국립대구과학관": {
+    "lat": 35.686655,
+    "lng": 128.465762,
+    "kakaoName": "국립대구과학관",
+    "kakaoAddress": "대구 달성군 유가읍 테크노대로6길 20",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "국립부산과학관": {
+    "lat": 35.204422,
+    "lng": 129.2126,
+    "kakaoName": "국립부산과학관",
+    "kakaoAddress": "부산 기장군 기장읍 동부산관광6로 59",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "울산과학관": {
+    "lat": 35.539625,
+    "lng": 129.267926,
+    "kakaoName": "울산과학관",
+    "kakaoAddress": "울산 남구 남부순환도로 111",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "거창월성청소년수련원 천체관측실": {
+    "lat": 35.761931,
+    "lng": 127.725483,
+    "kakaoName": "거창군 월성청소년수련원",
+    "kakaoAddress": "경남 거창군 북상면 덕유월성로 1312-96",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "김해천문대": {
+    "lat": 35.253119,
+    "lng": 128.887301,
+    "kakaoName": "김해천문대",
+    "kakaoAddress": "경남 김해시 가야테마길 254",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "부산어린이회관 천체관측실": {
+    "lat": 35.182505,
+    "lng": 129.046693,
+    "kakaoName": "",
+    "kakaoAddress": "부산 부산진구 새싹로 295",
+    "geoSource": "address",
+    "suspect": false
+  },
+  "영양반딧불이천문대": {
+    "lat": 36.830416,
+    "lng": 129.269451,
+    "kakaoName": "영양반딧불이천문대",
+    "kakaoAddress": "경북 영양군 수비면 반딧불이로 129",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "영천보현산천문과학관": {
+    "lat": 36.140292,
+    "lng": 128.996718,
+    "kakaoName": "보현산천문과학관",
+    "kakaoAddress": "경북 영천시 화북면 별빛로 681-32",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "예천천문우주센터": {
+    "lat": 36.701319,
+    "lng": 128.504848,
+    "kakaoName": "예천천문우주센터",
+    "kakaoAddress": "경북 예천군 감천면 충효로 1078",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "밀양아리랑우주천문대": {
+    "lat": 35.502579,
+    "lng": 128.761081,
+    "kakaoName": "밀양아리랑 우주천문대",
+    "kakaoAddress": "경남 밀양시 밀양대공원로 86",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "서귀포천문과학문화관": {
+    "lat": 33.288873,
+    "lng": 126.460418,
+    "kakaoName": "서귀포천문과학문화관",
+    "kakaoAddress": "제주특별자치도 서귀포시 1100로 506-1",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "제주별빛누리공원": {
+    "lat": 33.444535,
+    "lng": 126.549162,
+    "kakaoName": "제주별빛누리공원",
+    "kakaoAddress": "제주특별자치도 제주시 선돌목동길 60",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "제주 1100고지 습지": {
+    "lat": 33.358019,
+    "lng": 126.46363,
+    "kakaoName": "1100고지습지",
+    "kakaoAddress": "제주특별자치도 서귀포시 색달동 산 1-1",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "강릉 안반데기": {
+    "lat": 37.626307,
+    "lng": 128.739447,
+    "kakaoName": "안반데기 주차장",
+    "kakaoAddress": "강원특별자치도 강릉시 왕산면 대기리 2214-96",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "합천 황매산 은하수 동산": {
+    "lat": 35.481624,
+    "lng": 127.982154,
+    "kakaoName": "",
+    "kakaoAddress": "경남 합천군 가회면 황매산공원길 331",
+    "geoSource": "address",
+    "suspect": false
+  },
+  "영양국제밤하늘보호공원": {
+    "lat": 36.837763,
+    "lng": 129.271157,
+    "kakaoName": "영양국제밤하늘보호공원",
+    "kakaoAddress": "경북 영양군 수비면 반딧불이로 227",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "무주 적상산 전망대": {
+    "lat": 35.95637,
+    "lng": 127.698461,
+    "kakaoName": "적상산전망대",
+    "kakaoAddress": "전북특별자치도 무주군 적상면 북창리 931-3",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "평창 육백마지기": {
+    "lat": 37.406845,
+    "lng": 128.51177,
+    "kakaoName": "육백마지기",
+    "kakaoAddress": "강원특별자치도 평창군 미탄면 회동리 1-75",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "영천 보현산 별빛마을": {
+    "lat": 36.13871,
+    "lng": 129.006208,
+    "kakaoName": "",
+    "kakaoAddress": "경북 영천시 화북면 별빛로",
+    "geoSource": "address",
+    "suspect": false
+  },
+  "국립청소년우주센터": {
+    "lat": 34.533018,
+    "lng": 127.468118,
+    "kakaoName": "국립청소년우주센터",
+    "kakaoAddress": "전남광주통합특별시 고흥군 동일면 덕흥양쪽길 200",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "천안 홍대용과학관": {
+    "lat": 36.73962,
+    "lng": 127.295599,
+    "kakaoName": "천안홍대용과학관",
+    "kakaoAddress": "충남 천안시 동남구 수신면 장산서길 113",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "제주항공우주박물관": {
+    "lat": 33.30435,
+    "lng": 126.299794,
+    "kakaoName": "제주항공우주박물관",
+    "kakaoAddress": "제주특별자치도 서귀포시 안덕면 항공우주로 83",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "사천항공우주박물관": {
+    "lat": 35.071423,
+    "lng": 128.06287,
+    "kakaoName": "항공우주박물관",
+    "kakaoAddress": "경남 사천시 사남면 공단1로 78",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "가평 화악산": {
+    "lat": 37.994783,
+    "lng": 127.503328,
+    "kakaoName": "화악산",
+    "kakaoAddress": "경기 가평군 북면 화악리 산 228-5",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "제주 새별오름": {
+    "lat": 33.366278,
+    "lng": 126.357731,
+    "kakaoName": "새별오름",
+    "kakaoAddress": "제주특별자치도 제주시 애월읍 봉성리 산 59-8",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "태백 함백산": {
+    "lat": 37.161167,
+    "lng": 128.917626,
+    "kakaoName": "함백산",
+    "kakaoAddress": "강원특별자치도 정선군 고한읍 고한리 산 214",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "남원시천문과학관": {
+    "lat": 35.399222,
+    "lng": 127.387403,
+    "kakaoName": "남원시천문과학관",
+    "kakaoAddress": "전북특별자치도 남원시 양림길 48-63",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "금련산청소년수련원 천문대": {
+    "lat": 35.155235,
+    "lng": 129.10067,
+    "kakaoName": "금련산청소년수련원 천문대",
+    "kakaoAddress": "부산 수영구 황령산로 156",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "만항재": {
+    "lat": 37.150774,
+    "lng": 128.90059,
+    "kakaoName": "만항재",
+    "kakaoAddress": "강원특별자치도 정선군 고한읍 고한리 산 216-37",
+    "geoSource": "keyword",
+    "suspect": false
+  },
+  "테코천문대": {
+    "lat": 37.621661,
+    "lng": 126.932937,
+    "kakaoName": "",
+    "kakaoAddress": "서울 은평구 불광동 189-42",
+    "geoSource": "address",
+    "suspect": false
+  },
+  "서울특별시교육청융합과학교육원 천문대": {
+    "lat": 37.468781,
+    "lng": 126.959526,
+    "kakaoName": "서울특별시교육청융합과학교육원",
+    "kakaoAddress": "서울 관악구 낙성대로 101",
+    "geoSource": "keyword",
+    "suspect": false
+  }
+}

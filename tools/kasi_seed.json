@@ -1,0 +1,279 @@
+{
+  "source": "https://astro.kasi.re.kr/learning/pageView/6388",
+  "fetchedAt": "2026-07-30",
+  "total": 68,
+  "items": [
+    {
+      "name": "광진청소년수련관",
+      "kasiRegion": "서울"
+    },
+    {
+      "name": "국립서울과학관",
+      "kasiRegion": "서울"
+    },
+    {
+      "name": "서울과학전시관천문대",
+      "kasiRegion": "서울"
+    },
+    {
+      "name": "노원우주학교",
+      "kasiRegion": "서울"
+    },
+    {
+      "name": "창동청소년문화의집",
+      "kasiRegion": "서울"
+    },
+    {
+      "name": "테코천문대",
+      "kasiRegion": "서울"
+    },
+    {
+      "name": "한국우주전파관측망 연세대학교천문대",
+      "kasiRegion": "서울"
+    },
+    {
+      "name": "가평자연과별천문대",
+      "kasiRegion": "경기도"
+    },
+    {
+      "name": "가평코스모피아천문대",
+      "kasiRegion": "경기도"
+    },
+    {
+      "name": "과천정보과학도서관",
+      "kasiRegion": "경기도"
+    },
+    {
+      "name": "국립과천과학관",
+      "kasiRegion": "경기도"
+    },
+    {
+      "name": "군포누리천문대",
+      "kasiRegion": "경기도"
+    },
+    {
+      "name": "안성천문대",
+      "kasiRegion": "경기도"
+    },
+    {
+      "name": "양주송암천문대",
+      "kasiRegion": "경기도"
+    },
+    {
+      "name": "양평국제천문대",
+      "kasiRegion": "경기도"
+    },
+    {
+      "name": "양평중미산천문대",
+      "kasiRegion": "경기도"
+    },
+    {
+      "name": "어린이천문대(구둔)",
+      "kasiRegion": "경기도"
+    },
+    {
+      "name": "어린이천문대(분당)",
+      "kasiRegion": "경기도"
+    },
+    {
+      "name": "어린이천문대(일산)",
+      "kasiRegion": "경기도"
+    },
+    {
+      "name": "여주세종천문대",
+      "kasiRegion": "경기도"
+    },
+    {
+      "name": "의정부과학도서관(천문우주체험실)",
+      "kasiRegion": "경기도"
+    },
+    {
+      "name": "평택무봉산청소년수련원",
+      "kasiRegion": "경기도"
+    },
+    {
+      "name": "양구국토정중앙천문대",
+      "kasiRegion": "강원도"
+    },
+    {
+      "name": "영월별마로천문대",
+      "kasiRegion": "강원도"
+    },
+    {
+      "name": "평창청소년수련원",
+      "kasiRegion": "강원도"
+    },
+    {
+      "name": "화천청소년수련관",
+      "kasiRegion": "강원도"
+    },
+    {
+      "name": "횡성우리별천문대",
+      "kasiRegion": "강원도"
+    },
+    {
+      "name": "횡성천문인마을",
+      "kasiRegion": "강원도"
+    },
+    {
+      "name": "국립중앙과학관",
+      "kasiRegion": "충청도"
+    },
+    {
+      "name": "대덕전파천문대",
+      "kasiRegion": "충청도"
+    },
+    {
+      "name": "대전만인산푸른학습원",
+      "kasiRegion": "충청도"
+    },
+    {
+      "name": "대전시민천문대",
+      "kasiRegion": "충청도"
+    },
+    {
+      "name": "보은서당골 천문대",
+      "kasiRegion": "충청도"
+    },
+    {
+      "name": "서산류방택천문기상과학관",
+      "kasiRegion": "충청도"
+    },
+    {
+      "name": "소백산 천문대",
+      "kasiRegion": "충청도"
+    },
+    {
+      "name": "제천별새꽃들 자연탐사과학관",
+      "kasiRegion": "충청도"
+    },
+    {
+      "name": "조치원을지천문대",
+      "kasiRegion": "충청도"
+    },
+    {
+      "name": "증평좌구산천문대",
+      "kasiRegion": "충청도"
+    },
+    {
+      "name": "진천선두천문대",
+      "kasiRegion": "충청도"
+    },
+    {
+      "name": "천안청소년수련원",
+      "kasiRegion": "충청도"
+    },
+    {
+      "name": "청양칠갑산천문대",
+      "kasiRegion": "충청도"
+    },
+    {
+      "name": "청주별학교",
+      "kasiRegion": "충청도"
+    },
+    {
+      "name": "충주고구려천문과학관",
+      "kasiRegion": "충청도"
+    },
+    {
+      "name": "한국천문연구원본원",
+      "kasiRegion": "충청도"
+    },
+    {
+      "name": "호빔 천문대",
+      "kasiRegion": "충청도"
+    },
+    {
+      "name": "고흥우주천문과학관",
+      "kasiRegion": "전라도"
+    },
+    {
+      "name": "곡성섬진강천문대",
+      "kasiRegion": "전라도"
+    },
+    {
+      "name": "남원하늘별마을만행산천문체험관",
+      "kasiRegion": "전라도"
+    },
+    {
+      "name": "남원항공우주천문대",
+      "kasiRegion": "전라도"
+    },
+    {
+      "name": "담양성암천문대",
+      "kasiRegion": "전라도"
+    },
+    {
+      "name": "무주 반디별 천문과학관",
+      "kasiRegion": "전라도"
+    },
+    {
+      "name": "무주부남천문대",
+      "kasiRegion": "전라도"
+    },
+    {
+      "name": "변산 금구원조각공원 천문대",
+      "kasiRegion": "전라도"
+    },
+    {
+      "name": "빛고을천문대",
+      "kasiRegion": "전라도"
+    },
+    {
+      "name": "순천만천문대",
+      "kasiRegion": "전라도"
+    },
+    {
+      "name": "장흥정남진천문과학관",
+      "kasiRegion": "전라도"
+    },
+    {
+      "name": "거창월성청소년수련원",
+      "kasiRegion": "경상도"
+    },
+    {
+      "name": "김해천문대",
+      "kasiRegion": "경상도"
+    },
+    {
+      "name": "부산금련산천문대",
+      "kasiRegion": "경상도"
+    },
+    {
+      "name": "부산어린이회관",
+      "kasiRegion": "경상도"
+    },
+    {
+      "name": "영양반딧불이천문대",
+      "kasiRegion": "경상도"
+    },
+    {
+      "name": "영천보현산천문과학관",
+      "kasiRegion": "경상도"
+    },
+    {
+      "name": "영천보현산천문대",
+      "kasiRegion": "경상도"
+    },
+    {
+      "name": "예천천문우주센터",
+      "kasiRegion": "경상도"
+    },
+    {
+      "name": "한국우주전파관측망 울산전파천문대",
+      "kasiRegion": "경상도"
+    },
+    {
+      "name": "서귀포 천문과학문화관",
+      "kasiRegion": "제주도"
+    },
+    {
+      "name": "제주별빛누리공원",
+      "kasiRegion": "제주도"
+    },
+    {
+      "name": "한국우주전파관측망 탐라전파천문대",
+      "kasiRegion": "제주도"
+    }
+  ]
+}

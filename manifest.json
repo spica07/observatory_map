@@ -1,0 +1,34 @@
+{
+  "name": "천문대 지도 — 별과 은하수 보러 가는 곳",
+  "short_name": "천문대 지도",
+  "description": "전국 천문대·천문과학관과 은하수 관측 명소 지도 — 유아 동반 등급, 밤하늘 어둠 등급, 달 위상 달력",
+  "lang": "ko",
+  "dir": "ltr",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0b1023",
+  "theme_color": "#131a35",
+  "categories": ["travel", "education", "lifestyle"],
+  "icons": [
+    {
+      "src": "assets/icons/app-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/app-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/app-icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

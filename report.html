@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<title>데이터 현황 리포트 — 천문대 지도</title>
+<meta name="description" content="천문대 지도 수록 현황 — 종류·지역·유아 동반 등급·밤하늘 등급 분포와 미확인 항목 비율">
+<meta name="theme-color" content="#131a35">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/icons/app-icon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/app-icon-apple-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="천문대 지도">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="app-header">
+  <a class="report-btn" href="index.html">지도로</a>
+  <div class="header-inner">
+    <h1 class="app-title">데이터 현황 리포트</h1>
+    <p class="app-subtitle">천문대·과학관·관측명소 <span id="totalCount"></span>곳 · 조사일 <span id="surveyDate"></span></p>
+    <div class="top-notice">유아 동반 등급과 밤하늘 어둠 등급은 조사 기반 판정이에요. 방문 전 꼭 직접 확인하세요.</div>
+  </div>
+</header>
+
+<main class="container report-page">
+
+  <section class="panel">
+    <h2 class="report-section-title">한눈에 보기</h2>
+    <div class="stat-tiles" id="statTiles"></div>
+  </section>
+
+  <section class="panel">
+    <h2 class="report-section-title">종류 분포</h2>
+    <div class="status-chips" id="kindChips"></div>
+  </section>
+
+  <section class="panel">
+    <h2 class="report-section-title">유아 동반 등급 분포</h2>
+    <div class="status-chips" id="kidChips"></div>
+  </section>
+
+  <section class="panel">
+    <h2 class="report-section-title">밤하늘 어둠 등급 분포</h2>
+    <div class="status-chips" id="darkChips"></div>
+  </section>
+
+  <section class="panel">
+    <h2 class="report-section-title">지역별 현황</h2>
+    <div class="table-wrap">
+      <table class="report-table" id="regionTable"></table>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2 class="report-section-title">아직 확인하지 못한 정보</h2>
+    <p class="report-note">값이 <strong>"모름"</strong>이거나 비어 있는 항목의 비율이에요. 이 숫자가 낮아질수록 데이터가 촘촘해집니다.</p>
+    <div class="table-wrap">
+      <table class="report-table" id="unknownTable"></table>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2 class="report-section-title">데이터 출처</h2>
+    <ul class="report-sources" id="sourceList"></ul>
+    <p class="report-note" id="kasiNote"></p>
+  </section>
+
+  <footer class="app-footer">
+    <p><a href="index.html">지도로 돌아가기</a></p>
+  </footer>
+</main>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/report.js"></script>
+</body>
+</html>
