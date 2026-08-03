@@ -203,7 +203,7 @@
       '<article class="facility-card" data-id="' + f.id + '">' +
         '<div class="card-body">' +
           '<div class="card-title-row">' +
-            '<h3 class="card-name">' + (KIND_EMOJI[f.kind] || '') + ' ' + esc(f.name) + '</h3>' +
+            '<h3 class="card-name">' + esc(f.name) + '</h3>' +
             '<button class="fav-btn" data-fav="' + f.id + '" aria-label="찜">' + (fav ? '❤️' : '🤍') + '</button>' +
           '</div>' +
           '<div class="card-tags">' + tags.join('') + '</div>' +
