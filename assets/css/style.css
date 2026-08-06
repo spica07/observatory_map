@@ -207,7 +207,7 @@ body {
   margin-top: 12px;
 }
 .result-count-row .pill { padding: 5px 12px; font-size: 0.8rem; }
-.result-count { font-size: 0.95rem; color: var(--brown); }
+.result-count { margin-left: auto; font-size: 0.95rem; color: var(--brown); }
 
 /* ---------- 뷰 전환 ---------- */
 .view-toggle { display: none; gap: 6px; }
