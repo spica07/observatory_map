@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.tile.openstreetmap.org https://unpkg.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
 <title>천문대 지도 — 별과 은하수 보러 가는 곳</title>
 <meta name="description" content="전국 천문대·천문과학관과 은하수 관측 명소 지도 — 유아 동반 등급, 밤하늘 어둠 등급, 달 위상 달력">
@@ -60,7 +60,9 @@
         <option value="">전체 시·군·구</option>
       </select>
       <button class="filter-collapse-btn" id="filterToggleBtn" type="button"
-              title="필터 열기" aria-label="필터 열기" aria-expanded="false">▼</button>
+              title="필터 열기" aria-label="필터 열기" aria-expanded="false">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 9l7 7 7-7"/></svg>
+      </button>
     </div>
     <div class="filter-groups" id="filterGroups" hidden>
       <div class="filter-row" id="regionFilters" data-key="region">
@@ -125,7 +127,9 @@
 <!-- 상세 모달 -->
 <div class="modal-overlay" id="modalOverlay" hidden>
   <div class="modal-card" role="dialog" aria-modal="true">
-    <button class="modal-close" id="modalClose" aria-label="닫기">✕</button>
+    <button class="modal-close" id="modalClose" aria-label="닫기">
+      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
     <div class="modal-body" id="modalBody"></div>
   </div>
 </div>

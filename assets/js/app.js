@@ -184,6 +184,10 @@
   }
 
   /* ---------- 카드 ---------- */
+  // 찜 표시는 이모지 대신 직접 그린 아이콘 — 기기·폰트에 따라 모양이 달라지지 않는다
+  var HEART_ICON = '<svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false">' +
+    '<path d="M12 20.4 4.3 12.8a4.8 4.8 0 0 1 6.8-6.8l.9.9.9-.9a4.8 4.8 0 1 1 6.8 6.8z"/></svg>';
+
   function cardHtml(f) {
     var rc = regionColor(f.region);
     var fav = favorites.has(f.id);
@@ -204,7 +208,8 @@
         '<div class="card-body">' +
           '<div class="card-title-row">' +
             '<h3 class="card-name">' + esc(f.name) + '</h3>' +
-            '<button class="fav-btn" data-fav="' + f.id + '" aria-label="찜">' + (fav ? '❤️' : '🤍') + '</button>' +
+            '<button class="fav-btn' + (fav ? ' on' : '') + '" data-fav="' + f.id + '"' +
+              ' aria-label="찜" aria-pressed="' + fav + '">' + HEART_ICON + '</button>' +
           '</div>' +
           '<div class="card-tags">' + tags.join('') + '</div>' +
           info.join('') +
@@ -475,7 +480,6 @@
   filterToggleBtn.addEventListener('click', function () {
     var willOpen = filterGroups.hidden;
     filterGroups.hidden = !willOpen;
-    filterToggleBtn.textContent = willOpen ? '▲' : '▼';
     var label = willOpen ? '필터 닫기' : '필터 열기';
     filterToggleBtn.title = label;
     filterToggleBtn.setAttribute('aria-label', label);

@@ -3,17 +3,20 @@
 :root {
   --brown: #b9c4e8;          /* 본문 보조 텍스트 */
   --brown-dark: #eaf0ff;     /* 본문 강조 텍스트 */
-  --terracotta: #F0B24A;     /* 강조(관측명소·수치) */
-  --gold: #F0B24A;
+  --gold: #F0B24A;           /* 강조(관측명소·수치) */
+  --terracotta: var(--gold); /* 옛 이름 — 값은 --gold 하나로 관리한다 */
   --teal: #5FD3C0;
+  --periwinkle: #8FA9FF;
   --surface: #1b2344;        /* 카드·패널 바닥 */
   --surface-2: #232d54;      /* 태그·버튼 바닥 */
+  --surface-3: #2c3766;      /* 어두운 바닥 위의 밝은 태그 */
   --grad-primary: linear-gradient(135deg, #8FA9FF, #5FD3C0);
   --border-light: #303c69;
   --text-muted: #8f9bc4;
   --shadow-card: 0 8px 25px rgba(0, 0, 0, 0.35);
-  --shadow-card-hover: 0 15px 35px rgba(0, 0, 0, 0.5);
+  --shadow-card-hover: 0 14px 32px rgba(0, 0, 0, 0.5);
   --shadow-panel: 0 4px 24px rgba(0, 0, 0, 0.3);
+  --tap: 44px;               /* 최소 터치 영역 */
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -37,25 +40,48 @@ body {
   padding: 28px 16px 18px;
   overflow: hidden;
 }
+/* 제목은 그라데이션 글자 대신 별빛처럼 은은하게 번지는 단색으로 둔다 */
 .app-title {
   font-size: 2.4rem;
-  background: var(--grad-primary);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: none;
+  color: var(--brown-dark);
+  letter-spacing: 0.01em;
+  text-shadow: 0 0 26px rgba(143, 169, 255, 0.38);
 }
 .top-notice {
   display: inline-block; text-align: center;
   margin: 10px auto 0; padding: 6px 16px;
-  background: #FFF4E0; color: #8B5A1F;
-  border: 1px solid #FFD8A8; border-radius: 12px;
+  background: rgba(240, 178, 74, 0.14);
+  color: #F5C97B;
+  border: 1px solid rgba(240, 178, 74, 0.4);
+  border-radius: 12px;
   font-size: 0.82rem; line-height: 1.35;
   position: relative; z-index: 1;
 }
-@keyframes float {
-  0%, 100% { transform: translateY(0) rotate(-4deg); }
-  50% { transform: translateY(-12px) rotate(4deg); }
+
+/* 아이콘은 한 벌로 — 굵기·모서리를 여기서만 정한다 */
+.ico {
+  width: 20px; height: 20px;
+  fill: none; stroke: currentColor;
+  stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+  pointer-events: none;   /* 클릭 판정이 늘 버튼에 잡히도록 */
+}
+
+:where(a, button, input, select, [tabindex]):focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+::selection { background: var(--periwinkle); color: #12193a; }
+
+/* 스크롤바도 밤하늘 팔레트 안으로 */
+* { scrollbar-width: thin; scrollbar-color: var(--border-light) transparent; }
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-thumb {
+  background: var(--border-light);
+  border: 3px solid transparent;
+  background-clip: content-box;
+  border-radius: 999px;
 }
 
 .container { max-width: 1200px; margin: 0 auto; padding: 0 16px 40px; }
@@ -66,13 +92,8 @@ body {
   padding: 8px 18px; border-radius: 999px;
   background: var(--surface); color: var(--brown);
   border: 2px solid var(--border-light);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  transition: all 0.25s;
-}
-.report-btn:hover {
-  background: var(--grad-primary); color: #12193a; border-color: transparent;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 14px rgba(143, 169, 255, 0.35);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
 /* ---------- 패널 공통 ---------- */
@@ -156,17 +177,17 @@ body {
 .search-row { gap: 10px; }
 
 .filter-collapse-btn {
-  flex: 0 0 44px; min-height: 44px;
+  flex: 0 0 var(--tap); width: var(--tap); min-height: var(--tap);
+  display: inline-flex; align-items: center; justify-content: center;
   background: var(--surface); color: var(--brown);
   border: 2px solid var(--border-light); border-radius: 999px;
-  font-size: 1rem; cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  transition: all 0.25s;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  transition: border-color 0.2s ease, color 0.2s ease;
 }
-.filter-collapse-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(109, 76, 65, 0.2);
-}
+.filter-collapse-btn[aria-expanded="true"] { border-color: var(--periwinkle); color: var(--brown-dark); }
+.filter-collapse-btn .ico { transition: transform 0.18s ease; }
+.filter-collapse-btn[aria-expanded="true"] .ico { transform: rotate(180deg); }
 .filter-groups[hidden] { display: none; }
 .search-box {
   flex: 1; min-width: 220px; position: relative;
@@ -178,8 +199,8 @@ body {
   outline: none; background: var(--surface); transition: box-shadow 0.2s, border-color 0.2s;
 }
 .search-box input:focus {
-  border-color: #D9A441;
-  box-shadow: 0 0 0 3px rgba(217, 164, 65, 0.18);
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(240, 178, 74, 0.2);
 }
 .district-select {
   padding: 11px 16px; border: 2px solid var(--border-light); border-radius: 999px;
@@ -189,14 +210,15 @@ body {
 }
 
 .pill {
+  min-height: var(--tap);
+  display: inline-flex; align-items: center;
   font-family: inherit; font-size: 0.92rem;
-  padding: 7px 16px; border-radius: 999px; cursor: pointer;
+  padding: 0 16px; border-radius: 999px; cursor: pointer;
   background: var(--surface); color: var(--brown);
   border: 2px solid var(--border-light);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  transition: all 0.25s;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
-.pill:hover { transform: translateY(-2px); }
 .pill.active {
   background: var(--grad-primary); color: #12193a; border-color: transparent;
   box-shadow: 0 4px 14px rgba(143, 169, 255, 0.35);
@@ -206,12 +228,13 @@ body {
   display: flex; align-items: center; flex-wrap: wrap; gap: 8px;
   margin-top: 12px;
 }
-.result-count-row .pill { padding: 5px 12px; font-size: 0.8rem; }
 .result-count { margin-left: auto; font-size: 0.95rem; color: var(--brown); }
 
 /* ---------- 뷰 전환 ---------- */
 .view-toggle { display: none; gap: 6px; }
-.pill-sm { padding: 6px 12px; font-size: 0.82rem; }
+/* 시각적으로는 작게, 히트 영역은 44px 그대로 */
+.pill-sm,
+.result-count-row .pill { min-height: var(--tap); padding: 0 13px; font-size: 0.82rem; }
 
 /* ---------- 지도 + 목록 ---------- */
 .content-grid {
@@ -243,9 +266,10 @@ body {
 .popup-name { font-size: 1.05rem; color: var(--brown-dark); margin-bottom: 4px; }
 .popup-meta { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px; }
 .popup-btn {
-  font-family: inherit; font-size: 0.85rem; padding: 5px 14px;
+  font-family: inherit; font-size: 0.85rem;
+  min-height: 36px; padding: 0 15px;
   border: none; border-radius: 999px; cursor: pointer;
-  background: var(--grad-primary); color: white;
+  background: var(--grad-primary); color: #12193a;
 }
 
 /* ---------- 카드 ---------- */
@@ -255,20 +279,23 @@ body {
 }
 .facility-card {
   background: var(--surface); border-radius: 25px; overflow: hidden;
+  border: 1px solid transparent;
   box-shadow: var(--shadow-card);
-  transition: all 0.4s; cursor: pointer;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  cursor: pointer;
   display: flex; flex-direction: column;
 }
-.facility-card:hover {
-  transform: translateY(-8px) rotate(-1deg);
-  box-shadow: var(--shadow-card-hover);
-}
 .fav-btn {
-  flex: 0 0 auto; font-size: 1.2rem; background: none;
-  border: none; cursor: pointer; padding: 2px; line-height: 1;
-  transition: transform 0.2s;
+  flex: 0 0 auto;
+  width: var(--tap); height: var(--tap);
+  margin: -10px -8px -10px 0;   /* 보이는 크기는 그대로, 히트 영역만 확보 */
+  display: flex; align-items: center; justify-content: center;
+  background: none; border: none; cursor: pointer;
+  color: var(--text-muted);
+  transition: color 0.2s ease;
 }
-.fav-btn:hover { transform: scale(1.2); }
+.fav-btn.on { color: #FF6B81; }
+.fav-btn.on .ico { fill: currentColor; }
 .card-body { padding: 16px 16px 16px; display: flex; flex-direction: column; gap: 7px; flex: 1; }
 .card-title-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
 .card-name { font-size: 1.08rem; color: var(--brown-dark); line-height: 1.3; flex: 1; min-width: 0; }
@@ -281,17 +308,18 @@ body {
 .tag.type-국립 { background: #E3F2FD; color: #1565C0; }
 .tag.type-공립 { background: #E8F5E9; color: #2E7D32; }
 .tag.free { background: #E0F7F5; color: #00796B; }
-.tag.paid { background: var(--surface-2); color: #E65100; }
+.tag.paid { background: var(--surface-2); color: var(--gold); }
 .card-info { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
 .card-info .ico { margin-right: 4px; }
 .card-locate {
   align-self: flex-start; margin-top: 2px;
+  min-height: 36px; display: inline-flex; align-items: center;
   font-family: inherit; font-size: 0.8rem;
-  padding: 5px 13px; border-radius: 999px; cursor: pointer;
-  background: var(--surface-2); color: #A05A2C; border: none;
-  transition: transform 0.2s;
+  padding: 0 14px; border-radius: 999px; cursor: pointer;
+  background: var(--surface-2); color: var(--brown-dark);
+  border: 1px solid var(--border-light);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
 }
-.card-locate:hover { transform: translateY(-2px); }
 
 /* ---------- 빈 상태 ---------- */
 .empty-state { text-align: center; padding: 60px 0; color: var(--brown); }
@@ -315,12 +343,12 @@ body {
   to { transform: scale(1) translateY(0); opacity: 1; }
 }
 .modal-close {
-  position: absolute; top: 14px; right: 14px;
-  width: 38px; height: 38px; border-radius: 50%;
+  position: absolute; top: 12px; right: 12px;
+  width: var(--tap); height: var(--tap); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
   border: none; background: var(--surface-2); color: var(--brown);
-  font-size: 1rem; cursor: pointer; transition: transform 0.3s;
+  cursor: pointer; transition: background-color 0.2s ease, color 0.2s ease;
 }
-.modal-close:hover { transform: rotate(90deg); }
 .modal-title { font-size: 1.4rem; text-align: center; margin: 6px 0 4px; color: var(--brown-dark); }
 .modal-tags { display: flex; justify-content: center; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
 .modal-intro {
@@ -339,23 +367,28 @@ body {
 .detail-item .k { color: var(--brown); }
 .detail-item .v { color: var(--brown-dark); word-break: break-all; }
 .modal-links { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+/* 밝은 바탕 위 흰 글씨는 읽히지 않는다 — 밤하늘 잉크색을 얹는다 */
 .link-btn {
   font-family: inherit; font-size: 0.95rem; text-decoration: none;
-  padding: 9px 20px; border-radius: 999px; color: white;
-  border: none; cursor: pointer; transition: transform 0.2s;
-  display: inline-block;
+  min-height: var(--tap); padding: 0 20px;
+  display: inline-flex; align-items: center;
+  border-radius: 999px; color: #12193a;
+  border: none; cursor: pointer;
+  transition: filter 0.2s ease, transform 0.2s ease;
 }
-.link-btn:hover { transform: translateY(-2px); }
 .link-btn.map { background: #4CAF7D; }
 .link-btn.web { background: #38bdf8; }
-.link-btn.fav { background: var(--terracotta); }
+.link-btn.fav { background: var(--gold); }
 
 /* ---------- 푸터 ---------- */
-.app-footer { margin-top: 26px; text-align: center; font-size: 0.8rem; color: #A98F76; }
+.app-footer {
+  margin-top: 26px; text-align: center;
+  font-size: 0.8rem; line-height: 1.6; color: var(--text-muted);
+}
 
 .site-notice {
   max-width: 1200px; margin: 18px auto 0; padding: 10px 20px 30px;
-  text-align: center; color: #A08A72; font-size: 0.72rem; line-height: 1.5;
+  text-align: center; color: var(--text-muted); font-size: 0.72rem; line-height: 1.5;
 }
 
 /* ---------- 반응형 ---------- */
@@ -376,38 +409,43 @@ body {
   .district-select { max-width: none; flex: 1; }
 }
 
-/* 독도 표시 — 배경 지도 표기에 기대지 않고 늘 같은 자리에 이름을 둔다 */
+/* 독도 표시 — 배경 지도 표기에 기대지 않고 늘 같은 자리에 이름을 둔다.
+   밤하늘 배경이라 흰 라벨이 아니라 어두운 패널색 라벨을 쓴다. */
 .dokdo-label {
-  background: transparent;
-  border: none;
+  background: rgba(27, 35, 68, 0.9);
+  color: #eaf0ff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 6px;
   box-shadow: none;
-  padding: 0;
-  color: #2f2e2b;
-  font-size: 11.5px;
+  padding: 1px 5px;
+  font-size: 0.72rem;
   font-weight: 700;
   white-space: nowrap;
-  text-shadow: 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff;
 }
+.dokdo-label::before,
 .dokdo-label.leaflet-tooltip-right::before,
 .dokdo-label.leaflet-tooltip-left::before { display: none; }
 
 /* 링크 복사 버튼 — 헤더 오른쪽 끝 */
-.app-header { position: relative; }
 .header-inner { position: relative; padding-right: 46px; }
 .share-link-btn {
   position: absolute;
-  right: 0;
-  top: 0;
-  width: 26px;
-  height: 26px;
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  right: -6px;
+  top: -6px;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-light);
   border-radius: 999px;
-  background: #fff;
-  font-size: 0.78rem;
+  background: var(--surface);
+  color: var(--brown);
+  font-size: 0.95rem;
   line-height: 1;
   cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
 }
-.share-link-btn:active { transform: scale(0.92); }
 .share-link-toast {
   position: absolute;
   right: 0;
@@ -433,12 +471,6 @@ body {
   color: var(--brown);
   letter-spacing: 0.02em;
 }
-.top-notice {
-  background: rgba(240, 178, 74, 0.14);
-  color: #F5C97B;
-  border-color: rgba(240, 178, 74, 0.4);
-}
-
 /* ---------- 달 위상 패널 ---------- */
 .moon-panel { margin-bottom: 16px; }
 .moon-head {
@@ -460,12 +492,14 @@ body {
 .moon-advice.ok   { background: rgba(143, 169, 255, 0.16); color: #B4C6FF; }
 .moon-advice.bad  { background: rgba(240, 178, 74, 0.14); color: #F5C97B; }
 .moon-toggle {
-  flex: none; padding: 9px 18px; border-radius: 999px; cursor: pointer;
+  flex: none; min-height: var(--tap); padding: 0 18px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 999px; cursor: pointer;
   font-family: inherit; font-size: 0.88rem;
   background: var(--surface-2); color: var(--brown-dark);
   border: 2px solid var(--border-light);
+  transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
 }
-.moon-toggle:hover { transform: translateY(-2px); }
 
 .moon-calendar { margin-top: 16px; }
 .moon-cal-head {
@@ -553,17 +587,28 @@ body {
 .link-btn.src { background: var(--surface-2); color: var(--brown-dark); }
 
 /* ---------- 지도·팝업 다크 대비 ---------- */
+/* 배경 지도만 밝은 낮 화면이면 밤하늘 앱 안에서 혼자 떠 보인다.
+   타일 제공자는 그대로 두고 타일 이미지만 반전시켜 어두운 지도로 바꾼다.
+   마커는 divIcon(HTML)이라 이 필터의 영향을 받지 않는다. */
+.leaflet-tile {
+  filter: invert(1) hue-rotate(180deg) brightness(0.92) contrast(0.85) saturate(0.3);
+}
+.leaflet-container { background: #0b1023; }
 .leaflet-popup-content-wrapper, .leaflet-popup-tip {
   background: var(--surface); color: var(--brown-dark);
 }
 .leaflet-container a.leaflet-popup-close-button { color: var(--brown); }
-.map-legend { background: rgba(27, 35, 68, 0.92); color: var(--brown-dark); }
-.dokdo-label {
-  background: rgba(27, 35, 68, 0.9); color: #eaf0ff;
-  border: 1px solid rgba(255, 255, 255, 0.35); border-radius: 6px;
-  padding: 1px 5px; font-size: 0.72rem; box-shadow: none;
+.leaflet-bar a, .leaflet-bar a:hover {
+  background: var(--surface); color: var(--brown-dark);
+  border-bottom-color: var(--border-light);
 }
-.dokdo-label::before { display: none; }
+.leaflet-bar a:hover { background: var(--surface-2); }
+.leaflet-bar { border: 1px solid var(--border-light); }
+.leaflet-control-attribution {
+  background: rgba(27, 35, 68, 0.85); color: var(--text-muted);
+}
+.leaflet-control-attribution a { color: var(--brown); }
+.map-legend { background: rgba(27, 35, 68, 0.92); color: var(--brown-dark); }
 
 .app-footer, .site-notice { color: var(--text-muted); }
 
@@ -572,6 +617,40 @@ body {
   .moon-toggle { width: 100%; }
   .moon-cell { font-size: 0.7rem; padding: 5px 1px; }
   .moon-cell-dial { width: 14px; height: 14px; }
+}
+
+/* 포인터가 있는 기기에서만 hover 를 준다 — 터치에서는 탭 뒤 상태가 고착된다 */
+@media (hover: hover) {
+  .pill:not(.active):hover { border-color: var(--periwinkle); color: var(--brown-dark); }
+  .facility-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-light);
+    box-shadow: var(--shadow-card-hover);
+  }
+  .fav-btn:hover { color: var(--brown-dark); }
+  .fav-btn.on:hover { color: #FF8A9C; }
+  .card-locate:hover { border-color: var(--periwinkle); background: var(--surface-3); }
+  .moon-toggle:hover { border-color: var(--periwinkle); transform: translateY(-2px); }
+  .modal-close:hover { background: var(--surface-3); color: var(--brown-dark); }
+  .link-btn:hover { filter: brightness(1.08); transform: translateY(-2px); }
+  .report-btn:hover { border-color: var(--periwinkle); transform: translateY(-2px); }
+  .filter-collapse-btn:hover { border-color: var(--periwinkle); color: var(--brown-dark); }
+  .share-link-btn:hover { border-color: var(--periwinkle); color: var(--brown-dark); }
+  .search-box input:hover,
+  .district-select:hover { border-color: var(--text-muted); }
+}
+.share-link-btn:active { transform: scale(0.92); }
+
+/* 모션을 줄이려는 사용자에게도 "상태"는 보여야 한다.
+   transition-duration 만 낮추면 transition-property 가 남아 상태 변화가 렌더되지 않을 수 있으니
+   전환 자체를 끈다. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* ---------- 리포트 페이지 추가 ---------- */
