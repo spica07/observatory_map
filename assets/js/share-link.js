@@ -15,7 +15,12 @@
   btn.className = 'share-link-btn';
   btn.title = '링크 복사';
   btn.setAttribute('aria-label', '이 페이지 링크 복사');
-  btn.textContent = '\uD83D\uDD17';
+  // \uC774\uBAA8\uC9C0 \uB300\uC2E0 \uC571\uC758 \uC544\uC774\uCF58 \uCCB4\uACC4(.ico, 24 viewBox, stroke)\uB97C \uADF8\uB300\uB85C \uB530\uB974\uB294 SVG\uB97C \uC4F4\uB2E4.
+  // \uC774\uBAA8\uC9C0\uB294 \uAE30\uAE30\u00B7\uD3F0\uD2B8\uB9C8\uB2E4 \uBAA8\uC591\uC774 \uB2EC\uB77C\uC9C0\uACE0 \uB2E4\uB978 \uC544\uC774\uCF58\uB4E4\uACFC \uAD75\uAE30\uAC00 \uB9DE\uC9C0 \uC54A\uB294\uB2E4.
+  btn.innerHTML =
+    '<svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false">' +
+    '<path d="M10 13.5a3.5 3.5 0 0 0 5 0l3-3a3.5 3.5 0 0 0-5-5l-1 1"/>' +
+    '<path d="M14 10.5a3.5 3.5 0 0 0-5 0l-3 3a3.5 3.5 0 0 0 5 5l1-1"/></svg>';
 
   var toast = document.createElement('p');
   toast.className = 'share-link-toast';

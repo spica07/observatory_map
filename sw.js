@@ -8,7 +8,7 @@
  *
  * 콘텐츠를 크게 바꾸면 CACHE 버전 숫자를 올려서 옛 캐시를 비운다.
  */
-const CACHE = 'observatory-map-cache-v3';
+const CACHE = 'observatory-map-cache-v5';
 
 // 첫 진입에 필요한 핵심 자원(앱 셸) — 오프라인 첫 실행 보장
 const CORE_ASSETS = [
@@ -20,7 +20,11 @@ const CORE_ASSETS = [
   'assets/js/app.js',
   'assets/js/report.js',
   'assets/js/moon.js',
+  'assets/js/geo.js',
   'assets/js/share-link.js',
+  // Leaflet 자체 호스팅분 — 이게 캐시에 없으면 오프라인에서 지도 스크립트가 통째로 사라진다
+  'assets/vendor/leaflet/leaflet.js',
+  'assets/vendor/leaflet/leaflet.css',
   'assets/icons/app-icon-192.png',
   'assets/icons/app-icon-512.png',
   'assets/icons/app-icon-apple-180.png',

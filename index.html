@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.tile.openstreetmap.org https://unpkg.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.tile.openstreetmap.org; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
 <title>천문대 지도 — 별과 은하수 보러 가는 곳</title>
 <meta name="description" content="전국 천문대·천문과학관과 은하수 관측 명소 지도 — 유아 동반 등급, 밤하늘 어둠 등급, 달 위상 달력">
 <meta name="theme-color" content="#131a35">
@@ -13,8 +13,9 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="천문대 지도">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="anonymous">
+<!-- Leaflet 1.9.4 자체 호스팅 — CDN이 막히거나 오프라인이어도 앱이 뜨게 한다.
+     내려받은 파일은 unpkg의 무결성 해시(js sha256-20nQCchB..., css sha256-p4NxAoJB...)와 일치함을 확인했다. -->
+<link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -23,35 +24,40 @@
   <div class="header-inner">
     <h1 class="app-title">천문대 지도</h1>
     <p class="app-subtitle">별과 은하수 보러 가는 곳</p>
-    <div class="top-notice">유아 동반 등급과 밤하늘 어둠 등급은 조사 기반 판정이에요. 방문 전 꼭 직접 확인하세요.</div>
   </div>
 </header>
 
 <main class="container">
 
-  <!-- 달 위상 패널 -->
+  <!-- 달 위상 패널 — 기본은 한 줄 요약, 펼치면 조언과 달력까지 -->
   <section class="panel moon-panel" id="moonPanel">
-    <div class="moon-head">
-      <div class="moon-today">
-        <div class="moon-dial" id="moonDial" aria-hidden="true"></div>
-        <div class="moon-today-text">
-          <div class="moon-phase-name" id="moonPhaseName"></div>
-          <div class="moon-illum" id="moonIllum"></div>
-        </div>
-      </div>
-      <div class="moon-advice" id="moonAdvice"></div>
-      <button class="moon-toggle" id="moonToggle" type="button"
-              aria-expanded="false" aria-controls="moonCalendar">이번 달 달력</button>
-    </div>
-    <div class="moon-calendar" id="moonCalendar" hidden>
+    <h2 class="sr-only">오늘 밤 달 상태</h2>
+    <button class="moon-summary" id="moonToggle" type="button"
+            aria-expanded="false" aria-controls="moonDetail">
+      <span class="moon-dial" id="moonDial" aria-hidden="true"></span>
+      <span class="moon-summary-text">
+        <span class="moon-phase-name" id="moonPhaseName"></span>
+        <span class="moon-summary-line" id="moonSummaryLine"></span>
+      </span>
+      <svg class="ico moon-chev" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 9l7 7 7-7"/></svg>
+    </button>
+    <div class="moon-detail" id="moonDetail" hidden>
+      <p class="moon-illum" id="moonIllum"></p>
+      <p class="moon-advice" id="moonAdvice"></p>
       <div class="moon-cal-head" id="moonCalHead"></div>
       <div class="moon-grid" id="moonGrid"></div>
-      <p class="moon-cal-note">은하수는 달빛이 없는 <strong>삭(그믐) 전후</strong>, 우리 은하 중심이 높이 뜨는 <strong>5~9월</strong>에 가장 잘 보여요. 두 조건이 겹치는 밤을 표시했어요.</p>
+      <ul class="moon-legend">
+        <li><span class="moon-key milkyway" aria-hidden="true"></span>은하수 보기 좋은 밤</li>
+        <li><span class="moon-key darknight" aria-hidden="true"></span>달빛이 약한 밤</li>
+        <li><span class="moon-key today" aria-hidden="true"></span>오늘</li>
+      </ul>
+      <p class="moon-cal-note">은하수는 달빛이 없는 <strong>삭(그믐) 전후</strong>, 우리 은하 중심이 높이 뜨는 <strong>5~9월</strong>에 가장 잘 보여요. 두 조건이 겹치는 밤을 표시했어요. <strong>날짜를 누르면 그 밤에 갈 만한 곳으로 목록이 좁혀져요.</strong></p>
     </div>
   </section>
 
   <!-- 필터 바 -->
   <section class="panel filter-bar">
+    <h2 class="sr-only">검색과 필터</h2>
     <div class="filter-row search-row">
       <div class="search-box">
         <input type="search" id="searchInput" placeholder="천문대 이름이나 지역으로 검색해 보세요" autocomplete="off">
@@ -60,12 +66,22 @@
         <option value="">전체 시·군·구</option>
       </select>
       <button class="filter-collapse-btn" id="filterToggleBtn" type="button"
-              title="필터 열기" aria-label="필터 열기" aria-expanded="false">
+              aria-expanded="false" aria-controls="filterGroups">
+        <span class="filter-btn-text">필터</span>
+        <span class="filter-count" id="filterCount" hidden></span>
         <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 9l7 7 7-7"/></svg>
       </button>
     </div>
+
+    <!-- 지금 걸려 있는 필터 — 접힌 패널 안이 아니라 항상 보이는 자리에 둔다 -->
+    <div class="active-filters" id="activeFilters" hidden>
+      <span class="filter-label">적용 중</span>
+      <span class="active-filter-chips" id="activeFilterChips"></span>
+      <button class="pill pill-sm reset" id="clearAllBtn" type="button">모두 지우기</button>
+    </div>
+
     <div class="filter-groups" id="filterGroups" hidden>
-      <div class="filter-row" id="regionFilters" data-key="region">
+      <div class="filter-row scroll-row" id="regionFilters" data-key="region">
         <span class="filter-label">지역</span>
       </div>
       <div class="filter-row" id="kindFilters" data-key="kind">
@@ -77,6 +93,7 @@
       <div class="filter-row" id="darkFilters" data-key="dark">
         <span class="filter-label">밤하늘</span>
       </div>
+      <p class="filter-note">유아 동반과 밤하늘 등급은 공공 데이터가 아니라 조사해서 매긴 판정이에요. 방문 전 꼭 직접 확인하세요.</p>
       <div class="filter-row" id="reserveFilters" data-key="reserve">
         <span class="filter-label">예약</span>
       </div>
@@ -86,8 +103,6 @@
         <button class="pill" data-toggle="toilet">화장실</button>
         <button class="pill" data-toggle="parking">주차장</button>
         <button class="pill" data-toggle="planetarium">천체투영실</button>
-        <button class="pill" data-toggle="favOnly">찜만 보기</button>
-        <button class="pill reset" id="resetBtn">초기화</button>
       </div>
     </div>
     <div class="result-count-row" id="resultCountRow">
@@ -95,12 +110,25 @@
         <button class="pill pill-sm" data-view="map">지도</button>
         <button class="pill pill-sm active" data-view="list">목록</button>
       </div>
+      <button class="pill pill-sm nearby-btn" id="nearbyBtn" type="button" aria-pressed="false">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21.2c4.3-4.4 6.5-7.8 6.5-10.4a6.5 6.5 0 1 0-13 0c0 2.6 2.2 6 6.5 10.4z"/><circle cx="12" cy="10.6" r="2.4"/></svg>
+        <span id="nearbyLabel">내 주변</span>
+      </button>
       <button class="pill pill-sm" id="favOnly" data-toggle="favOnly">찜만 보기</button>
-      <span class="result-count" id="resultCount"></span>
+      <span class="result-count" id="resultCount" role="status" aria-live="polite"></span>
     </div>
+    <p class="nearby-notice" id="nearbyNotice" hidden></p>
   </section>
 
   <!-- 지도 + 카드 목록 -->
+  <h2 class="sr-only">천문대 목록과 지도</h2>
+  <!-- 빈 상태는 목록 칸 밖에 둔다. 안에 두면 모바일 지도 뷰에서 목록이 숨겨질 때
+       "없어요" 메시지까지 같이 사라져 빈 지도만 남는다. -->
+  <div class="empty-state" id="emptyState" hidden>
+    <p class="empty-title">조건에 맞는 곳이 없어요</p>
+    <p class="empty-desc">필터를 한두 개 풀면 다시 나타나요.</p>
+    <button class="pill" id="emptyResetBtn" type="button">필터 초기화</button>
+  </div>
   <section class="content-grid">
     <div class="map-pane" id="mapPane">
       <div id="map"></div>
@@ -108,9 +136,6 @@
     </div>
     <div class="list-pane" id="listPane">
       <div class="card-grid" id="cardGrid"></div>
-      <div class="empty-state" id="emptyState" hidden>
-        <p>조건에 맞는 곳이 없어요.<br>필터를 바꿔 보세요!</p>
-      </div>
     </div>
   </section>
 
@@ -126,7 +151,7 @@
 
 <!-- 상세 모달 -->
 <div class="modal-overlay" id="modalOverlay" hidden>
-  <div class="modal-card" role="dialog" aria-modal="true">
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <button class="modal-close" id="modalClose" aria-label="닫기">
       <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
@@ -134,10 +159,10 @@
   </div>
 </div>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="anonymous"></script>
+<script src="assets/vendor/leaflet/leaflet.js"></script>
 <script src="assets/js/data.js"></script>
 <script src="assets/js/moon.js"></script>
+<script src="assets/js/geo.js"></script>
 <script src="assets/js/app.js"></script>
 <script src="assets/js/share-link.js"></script>
 </body>

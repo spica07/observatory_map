@@ -4,7 +4,6 @@
   --brown: #b9c4e8;          /* 본문 보조 텍스트 */
   --brown-dark: #eaf0ff;     /* 본문 강조 텍스트 */
   --gold: #F0B24A;           /* 강조(관측명소·수치) */
-  --terracotta: var(--gold); /* 옛 이름 — 값은 --gold 하나로 관리한다 */
   --teal: #5FD3C0;
   --periwinkle: #8FA9FF;
   --surface: #1b2344;        /* 카드·패널 바닥 */
@@ -17,6 +16,10 @@
   --shadow-card-hover: 0 14px 32px rgba(0, 0, 0, 0.5);
   --shadow-panel: 0 4px 24px rgba(0, 0, 0, 0.3);
   --tap: 44px;               /* 최소 터치 영역 */
+  /* geo.js 가 내 위치 마커 색으로 읽어 가는 값. 다른 앱들은 밝은 바탕이라
+     어두운 잉크를 쓰지만, 여기는 밤 지도라 어두운 색이면 안 보인다.
+     종류 색(파랑·청록·금색)과도, 흰색인 독도와도 겹치지 않게 분홍으로 둔다. */
+  --ink: #FF5C8A;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -47,17 +50,6 @@ body {
   letter-spacing: 0.01em;
   text-shadow: 0 0 26px rgba(143, 169, 255, 0.38);
 }
-.top-notice {
-  display: inline-block; text-align: center;
-  margin: 10px auto 0; padding: 6px 16px;
-  background: rgba(240, 178, 74, 0.14);
-  color: #F5C97B;
-  border: 1px solid rgba(240, 178, 74, 0.4);
-  border-radius: 12px;
-  font-size: 0.82rem; line-height: 1.35;
-  position: relative; z-index: 1;
-}
-
 /* 아이콘은 한 벌로 — 굵기·모서리를 여기서만 정한다 */
 .ico {
   width: 20px; height: 20px;
@@ -73,6 +65,13 @@ body {
 }
 
 ::selection { background: var(--periwinkle); color: #12193a; }
+
+/* 화면에는 안 보이지만 스크린리더에는 읽히는 제목 —
+   h1 다음이 카드의 h3 라 단계가 건너뛰던 것을 메운다 */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
 
 /* 스크롤바도 밤하늘 팔레트 안으로 */
 * { scrollbar-width: thin; scrollbar-color: var(--border-light) transparent; }
@@ -146,21 +145,8 @@ body {
   background: var(--surface); border: 2px solid var(--border-light);
   border-radius: 18px; padding: 12px 14px; text-align: center;
 }
-.stat-tile .num { font-size: 1.7rem; color: var(--terracotta); }
+.stat-tile .num { font-size: 1.7rem; color: var(--gold); }
 .stat-tile .lbl { font-size: 0.85rem; color: var(--text-muted); }
-
-.district-bars { display: flex; flex-direction: column; gap: 5px; }
-.dbar {
-  display: grid; grid-template-columns: 74px 1fr 34px; align-items: center;
-  gap: 8px; background: none; border: none; cursor: pointer;
-  font-family: inherit; font-size: 0.9rem; color: var(--brown-dark);
-  padding: 2px 4px; border-radius: 10px; text-align: left;
-}
-.dbar:hover, .dbar.active { background: rgba(143, 169, 255, 0.08); }
-.dbar .track { display: block; background: var(--surface-2); border-radius: 999px; height: 14px; overflow: hidden; }
-.dbar .fill { display: block; height: 100%; border-radius: 999px; }
-.dbar .cnt { text-align: right; color: var(--text-muted); font-size: 0.85rem; }
-.dash-hint { margin-top: 10px; font-size: 0.8rem; color: var(--text-muted); text-align: center; }
 
 /* ---------- 필터 바 ---------- */
 .filter-bar {
@@ -176,28 +162,73 @@ body {
 }
 .search-row { gap: 10px; }
 
+/* 화살표 하나만 있던 자리다. 이 앱의 차별점(유아 동반·밤하늘 등급)이 이 뒤에 있는데
+   글자가 없으니 아무도 누르지 않았다. 이름과 적용 개수를 보이게 둔다. */
 .filter-collapse-btn {
-  flex: 0 0 var(--tap); width: var(--tap); min-height: var(--tap);
+  flex: none; min-height: var(--tap); padding: 0 14px; gap: 7px;
   display: inline-flex; align-items: center; justify-content: center;
   background: var(--surface); color: var(--brown);
   border: 2px solid var(--border-light); border-radius: 999px;
-  cursor: pointer;
+  cursor: pointer; font-family: inherit; font-size: 0.92rem;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
   transition: border-color 0.2s ease, color 0.2s ease;
 }
 .filter-collapse-btn[aria-expanded="true"] { border-color: var(--periwinkle); color: var(--brown-dark); }
-.filter-collapse-btn .ico { transition: transform 0.18s ease; }
+.filter-collapse-btn .ico { transition: transform 0.18s ease; width: 18px; height: 18px; }
 .filter-collapse-btn[aria-expanded="true"] .ico { transform: rotate(180deg); }
+.filter-count {
+  min-width: 21px; height: 21px; padding: 0 6px; border-radius: 999px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--grad-primary); color: #12193a;
+  font-size: 0.74rem; font-weight: 700;
+}
+.filter-count[hidden] { display: none; }
 .filter-groups[hidden] { display: none; }
+
+/* 지역 칩 18개가 세로로 5줄이 되면 필터 패널이 화면을 다 먹는다. 한 줄로 굴린다. */
+.scroll-row {
+  flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px;
+  scrollbar-width: thin;
+}
+.scroll-row .pill { flex: none; }
+/* 모바일 규칙(.filter-label { width: 100% })이 라벨을 한 줄 통째로 만들어
+   nowrap 스크롤 줄에서는 칩이 전부 화면 밖으로 밀려난다. 여기서는 라벨을 제자리에 둔다. */
+.scroll-row .filter-label { flex: none; width: auto; min-width: 42px; }
+
+.filter-note {
+  font-size: 0.78rem; line-height: 1.5; color: var(--text-muted);
+  margin: -2px 0 10px; padding-left: 2px;
+}
+
+/* 지금 걸려 있는 필터 — 접힌 패널 밖, 결과 바로 위 */
+.active-filters {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 8px;
+  margin-top: 10px;
+}
+.active-filters[hidden] { display: none; }
+.active-filter-chips { display: contents; }
+.chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  min-height: 32px; padding: 0 8px 0 12px; border-radius: 999px;
+  font-family: inherit; font-size: 0.82rem; cursor: pointer;
+  background: var(--surface-3); color: var(--brown-dark);
+  border: 1px solid var(--border-light);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.chip:hover { border-color: var(--periwinkle); background: var(--surface-2); }
+.chip-x { width: 15px; height: 15px; color: var(--text-muted); }
 .search-box {
   flex: 1; min-width: 220px; position: relative;
 }
+/* outline 을 끄지 않는다 — 전역 :focus-visible 규칙이 :where() 라 특이도가 0이어서,
+   여기서 outline:none 을 주면 키보드 포커스 표시가 통째로 사라진다 */
 .search-box input {
   width: 100%; padding: 11px 16px;
   border: 2px solid var(--border-light); border-radius: 999px;
   font-family: inherit; font-size: 1rem; color: var(--brown-dark);
-  outline: none; background: var(--surface); transition: box-shadow 0.2s, border-color 0.2s;
+  background: var(--surface); transition: box-shadow 0.2s, border-color 0.2s;
 }
+.search-box input::placeholder { color: var(--text-muted); }
 .search-box input:focus {
   border-color: var(--gold);
   box-shadow: 0 0 0 3px rgba(240, 178, 74, 0.2);
@@ -205,7 +236,7 @@ body {
 .district-select {
   padding: 11px 16px; border: 2px solid var(--border-light); border-radius: 999px;
   font-family: inherit; font-size: 1rem; color: var(--brown-dark);
-  background: var(--surface); cursor: pointer; outline: none;
+  background: var(--surface); cursor: pointer;
   max-width: 220px;
 }
 
@@ -230,8 +261,35 @@ body {
 }
 .result-count { margin-left: auto; font-size: 0.95rem; color: var(--brown); }
 
+/* ---------- 내 주변 (geo.js) ---------- */
+.nearby-btn { gap: 5px; }
+.nearby-btn .ico { width: 16px; height: 16px; }
+/* 위치를 묻는 동안 — 브라우저 팝업이 떠 있는 시간이라 몇 초씩 걸린다.
+   버튼이 눌리지 않는 이유를 흐리기로 알린다. */
+.nearby-btn:disabled { opacity: .55; cursor: default; }
+
+/* 거리는 내 주변 모드에서만 붙고, 그 화면에서 가장 먼저 읽는 값이다.
+   숫자가 자리마다 흔들리지 않게 고정폭 숫자를 쓴다. */
+.tag.dist {
+  background: rgba(255, 92, 138, 0.18);
+  color: #FF9BB6;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+/* 지도 위에 띄우지 않는다 — 모바일 기본이 목록 뷰라, 거기서 권한 안내를
+   못 보면 사용자는 버튼이 고장 난 줄 안다. */
+.nearby-notice {
+  margin-top: 8px;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--brown);
+}
+.nearby-notice[hidden] { display: none; }
+
 /* ---------- 뷰 전환 ---------- */
-.view-toggle { display: none; gap: 6px; }
+/* gap 은 8px 아래로 내리지 않는다 — 인접한 알약을 잘못 누르게 된다 */
+.view-toggle { display: none; gap: 8px; }
 /* 시각적으로는 작게, 히트 영역은 44px 그대로 */
 .pill-sm,
 .result-count-row .pill { min-height: var(--tap); padding: 0 13px; font-size: 0.82rem; }
@@ -247,8 +305,17 @@ body {
   background: var(--surface);
 }
 #map { height: calc(100vh - 120px); min-height: 420px; }
+
+/* 지도를 못 띄웠을 때 — 빈 사각형 대신 무슨 일이 있었고 뭘 쓸 수 있는지 말한다 */
+#map.map-unavailable { display: grid; place-items: center; padding: 32px 24px; }
+.map-fallback { max-width: 34ch; text-align: center; }
+.map-fallback-title { font-size: 1.1rem; color: var(--brown-dark); margin-bottom: 8px; }
+.map-fallback-desc { font-size: 0.88rem; color: var(--brown); line-height: 1.6; }
+
+/* 범례는 지도 위쪽에 둔다. 아래에 붙이면 지도 높이가 화면보다 커서
+   스크롤하기 전까지 마커 뜻을 못 보는 상태가 된다. 왼쪽 위는 줌 컨트롤 자리라 오른쪽. */
 .map-legend {
-  position: absolute; bottom: 12px; left: 12px; z-index: 800;
+  position: absolute; top: 12px; right: 12px; z-index: 800;
   background: rgba(255, 255, 255, 0.92); border-radius: 14px;
   padding: 8px 12px; font-size: 0.75rem; color: var(--brown-dark);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
@@ -304,16 +371,17 @@ body {
   font-size: 0.72rem; padding: 3px 10px; border-radius: 999px;
   background: var(--surface-2); color: var(--brown);
 }
-.tag.district { color: white; }
-.tag.type-국립 { background: #E3F2FD; color: #1565C0; }
-.tag.type-공립 { background: #E8F5E9; color: #2E7D32; }
+/* 지역 배지 글자색은 흰색이 아니라 어두운 잉크다.
+   REGION_COLOR 17색이 전부 중간 밝기라, 흰 글자로는 17개 중 16개가 WCAG AA(4.5:1)에
+   못 미쳤다(최악 대전 2.14:1). 같은 잉크색을 쓰는 .tag.kind 와도 결이 맞는다. */
+.tag.district { color: #12193a; font-weight: 700; }
 .tag.free { background: #E0F7F5; color: #00796B; }
 .tag.paid { background: var(--surface-2); color: var(--gold); }
 .card-info { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
 .card-info .ico { margin-right: 4px; }
 .card-locate {
   align-self: flex-start; margin-top: 2px;
-  min-height: 36px; display: inline-flex; align-items: center;
+  min-height: var(--tap); display: inline-flex; align-items: center;
   font-family: inherit; font-size: 0.8rem;
   padding: 0 14px; border-radius: 999px; cursor: pointer;
   background: var(--surface-2); color: var(--brown-dark);
@@ -322,7 +390,17 @@ body {
 }
 
 /* ---------- 빈 상태 ---------- */
-.empty-state { text-align: center; padding: 60px 0; color: var(--brown); }
+/* 빈 상태에는 빠져나갈 버튼이 함께 있어야 한다.
+   초기화가 접힌 필터 패널 안에만 있으면 사용자는 갇힌다. */
+.empty-state {
+  text-align: center; padding: 40px 20px; margin-bottom: 18px;
+  color: var(--brown); background: var(--surface);
+  border-radius: 25px; box-shadow: var(--shadow-panel);
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+.empty-state[hidden] { display: none; }
+.empty-title { font-size: 1.1rem; color: var(--brown-dark); }
+.empty-desc { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 10px; }
 
 /* ---------- 모달 ---------- */
 .modal-overlay {
@@ -395,7 +473,6 @@ body {
 @media (max-width: 900px) {
   .app-header { padding: 14px 16px 10px; }
   .app-title { font-size: 1.5rem; }
-  .top-notice { margin: 6px auto 0; padding: 4px 12px; font-size: 0.74rem; }
   .panel { padding: 12px 14px; margin-bottom: 10px; }
   .result-count-row { margin-top: 6px; }
   .view-toggle { display: flex; }
@@ -432,8 +509,8 @@ body {
   position: absolute;
   right: -6px;
   top: -6px;
-  width: 38px;
-  height: 38px;
+  width: var(--tap);
+  height: var(--tap);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -471,37 +548,55 @@ body {
   color: var(--brown);
   letter-spacing: 0.02em;
 }
-/* ---------- 달 위상 패널 ---------- */
+/* ---------- 달 위상 패널 ----------
+   기본은 한 줄 요약이다. 예전에는 조언 문단과 달력 버튼이 펼쳐진 채로 첫 화면을
+   차지해서, 모바일에서 장소 한 곳도 못 보고 스크롤을 시작해야 했다. */
 .moon-panel { margin-bottom: 16px; }
-.moon-head {
-  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+.moon-summary {
+  width: 100%; display: flex; align-items: center; gap: 14px;
+  min-height: var(--tap); padding: 4px 2px;
+  background: none; border: 0; cursor: pointer;
+  font-family: inherit; text-align: left; color: inherit;
 }
-.moon-today { display: flex; align-items: center; gap: 12px; }
 .moon-dial {
-  width: 46px; height: 46px; border-radius: 50%; flex: none;
+  width: 40px; height: 40px; border-radius: 50%; flex: none;
   box-shadow: 0 0 18px rgba(255, 234, 167, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.25);
 }
-.moon-phase-name { font-size: 1.1rem; color: var(--brown-dark); }
-.moon-illum { font-size: 0.82rem; color: var(--text-muted); }
+.moon-summary-text {
+  flex: 1; min-width: 0; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+}
+.moon-phase-name { font-size: 1.05rem; color: var(--brown-dark); }
+.moon-summary-line { font-size: 0.9rem; }
+.moon-summary-line.good { color: #8DE6D6; }
+.moon-summary-line.ok   { color: #B4C6FF; }
+.moon-summary-line.bad  { color: #F5C97B; }
+.moon-chev { flex: none; color: var(--text-muted); transition: transform 0.18s ease; }
+.moon-summary[aria-expanded="true"] .moon-chev { transform: rotate(180deg); }
+
+.moon-detail { margin-top: 14px; }
+.moon-detail[hidden] { display: none; }
+.moon-illum { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 10px; }
 .moon-advice {
-  flex: 1; min-width: 220px;
   font-size: 0.92rem; line-height: 1.45;
-  padding: 10px 14px; border-radius: 14px;
+  padding: 10px 14px; border-radius: 14px; margin-bottom: 16px;
 }
 .moon-advice.good { background: rgba(95, 211, 192, 0.16); color: #8DE6D6; }
 .moon-advice.ok   { background: rgba(143, 169, 255, 0.16); color: #B4C6FF; }
 .moon-advice.bad  { background: rgba(240, 178, 74, 0.14); color: #F5C97B; }
-.moon-toggle {
-  flex: none; min-height: var(--tap); padding: 0 18px;
-  display: inline-flex; align-items: center; justify-content: center;
-  border-radius: 999px; cursor: pointer;
-  font-family: inherit; font-size: 0.88rem;
-  background: var(--surface-2); color: var(--brown-dark);
-  border: 2px solid var(--border-light);
-  transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
-}
 
-.moon-calendar { margin-top: 16px; }
+/* 달력 색이 무슨 뜻인지 색만으로는 알 수 없어 범례를 붙인다 */
+.moon-legend {
+  list-style: none; display: flex; flex-wrap: wrap; gap: 8px 16px;
+  margin-top: 12px; font-size: 0.78rem; color: var(--text-muted);
+}
+.moon-legend li { display: flex; align-items: center; gap: 6px; }
+.moon-key { width: 14px; height: 14px; border-radius: 5px; display: inline-block; }
+.moon-key.milkyway {
+  background: rgba(95, 211, 192, 0.2);
+  box-shadow: inset 0 0 0 1.5px rgba(95, 211, 192, 0.6);
+}
+.moon-key.darknight { background: rgba(143, 169, 255, 0.14); }
+.moon-key.today { background: none; outline: 2px solid var(--gold); outline-offset: -2px; }
 .moon-cal-head {
   text-align: center; font-size: 1.05rem;
   color: var(--brown-dark); margin-bottom: 10px;
@@ -509,12 +604,16 @@ body {
 .moon-grid {
   display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px;
 }
+/* 날짜 칸은 누를 수 있는 컨트롤이다 — 그 밤에 맞는 밤하늘 등급으로 목록을 좁힌다 */
 .moon-cell {
   display: flex; flex-direction: column; align-items: center; gap: 4px;
   padding: 7px 2px; border-radius: 12px;
-  font-size: 0.78rem; color: var(--brown);
-  background: rgba(255, 255, 255, 0.03);
+  font-family: inherit; font-size: 0.78rem; color: var(--brown);
+  background: rgba(255, 255, 255, 0.03); border: 0;
 }
+button.moon-cell:not([disabled]) { cursor: pointer; }
+button.moon-cell:not([disabled]):hover { background: rgba(255, 255, 255, 0.09); }
+button.moon-cell[disabled] { cursor: default; }
 .moon-cell.head {
   background: none; color: var(--text-muted); padding: 2px;
 }
@@ -528,7 +627,7 @@ body {
   background: rgba(95, 211, 192, 0.2);
   box-shadow: inset 0 0 0 1.5px rgba(95, 211, 192, 0.6);
 }
-.moon-cell.today { outline: 2px solid var(--terracotta); outline-offset: 1px; }
+.moon-cell.today { outline: 2px solid var(--gold); outline-offset: 1px; }
 .moon-cal-note {
   margin-top: 12px; font-size: 0.82rem; line-height: 1.5; color: var(--text-muted);
 }
@@ -613,8 +712,9 @@ body {
 .app-footer, .site-notice { color: var(--text-muted); }
 
 @media (max-width: 600px) {
-  .moon-head { gap: 12px; }
-  .moon-toggle { width: 100%; }
+  .moon-summary { gap: 10px; }
+  .moon-dial { width: 34px; height: 34px; }
+  .moon-summary-text { gap: 2px 10px; }
   .moon-cell { font-size: 0.7rem; padding: 5px 1px; }
   .moon-cell-dial { width: 14px; height: 14px; }
 }
@@ -630,7 +730,8 @@ body {
   .fav-btn:hover { color: var(--brown-dark); }
   .fav-btn.on:hover { color: #FF8A9C; }
   .card-locate:hover { border-color: var(--periwinkle); background: var(--surface-3); }
-  .moon-toggle:hover { border-color: var(--periwinkle); transform: translateY(-2px); }
+  .moon-summary:hover .moon-phase-name { color: #ffffff; }
+  .chip:hover .chip-x { color: var(--brown-dark); }
   .modal-close:hover { background: var(--surface-3); color: var(--brown-dark); }
   .link-btn:hover { filter: brightness(1.08); transform: translateY(-2px); }
   .report-btn:hover { border-color: var(--periwinkle); transform: translateY(-2px); }
@@ -669,7 +770,7 @@ body {
 }
 .report-sources li::before {
   content: ''; position: absolute; left: 0; top: 15px;
-  width: 5px; height: 5px; border-radius: 50%; background: var(--terracotta);
+  width: 5px; height: 5px; border-radius: 50%; background: var(--gold);
 }
 .report-sources li:last-child { border-bottom: none; }
 .report-table a { color: var(--brown-dark); }
