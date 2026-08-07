@@ -420,6 +420,34 @@ body {
   from { transform: scale(0.96) translateY(8px); opacity: 0; }
   to { transform: scale(1) translateY(0); opacity: 1; }
 }
+@keyframes sheetUp {
+  from { transform: translateY(16px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+/* 좁은 화면에서는 가운데 카드가 아니라 아래에서 올라오는 바텀시트로 연다.
+   다른 지도 앱(museum_map 등)과 같은 방식이다. */
+@media (max-width: 639.98px) {
+  .modal-overlay { align-items: flex-end; padding: 0; }
+  .modal-card {
+    max-width: none; width: 100%;
+    max-height: 88dvh;
+    padding: 20px 16px max(20px, env(safe-area-inset-bottom));
+    border-radius: 25px 25px 0 0;
+    animation: sheetUp 0.22s cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+  /* 그랩 핸들 — 손가락으로 끌어내리는 시트라는 신호 */
+  .modal-card::before {
+    content: "";
+    display: block;
+    width: 40px; height: 4px;
+    margin: -8px auto 12px;
+    border-radius: 999px;
+    background: var(--border-light);
+  }
+  .modal-close { top: 8px; right: 8px; }
+  .modal-title { margin-top: 2px; padding: 0 40px; }
+  .modal-links .link-btn { flex: 1 1 auto; min-width: 120px; justify-content: center; }
+}
 .modal-close {
   position: absolute; top: 12px; right: 12px;
   width: var(--tap); height: var(--tap); border-radius: 50%;
